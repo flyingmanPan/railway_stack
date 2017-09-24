@@ -43,7 +43,10 @@ bool find(vector<int> &data,vector< stack<int> > &v_stack,
 		int size=v_stack.size();
 		for(auto i=v_stack.begin();i!=v_stack.end();i++)
 		{
-			while((*i).size()!=0)
+			cout<<time<<endl;
+			if(time==size||found)
+				break;
+			while((*i).size()!=0&&!found)
 			{
 				if((*i).top()!=num)
 				{
@@ -57,6 +60,17 @@ bool find(vector<int> &data,vector< stack<int> > &v_stack,
 					found=true;
 				}
 			}
+			time++;
+			#ifdef test
+				auto j=tmp2;
+				cout<<" In temp:";
+				while(!j.empty())
+				{
+					cout<<j.top()<< " ";
+					j.pop();
+				}
+				cout<<endl;
+			#endif
 			if(found&&!tmp2.empty())
 				v_stack.push_back(tmp2);
 			else
@@ -137,8 +151,7 @@ int main()
 	int cmd;
 	while(1)
 	{
-		cin>>cmd;
-		if(cmd==1)
+		if(num!=len)
 		{
 			find(data,v_stack,num,result);
 			display(data,v_stack,num,result);
